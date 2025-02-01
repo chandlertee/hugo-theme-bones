@@ -2,6 +2,11 @@
   {{ .Content }}
   {{ range site.RegularPages }}
     <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
+    <div class="summary">
+      {{ .Summary }}
+      {{ if .Truncated }}
+        <a href="{{ .RelPermalink }}">More ...</a>
+      {{ end }}
+    </div>
   {{ end }}
 {{ end }}
