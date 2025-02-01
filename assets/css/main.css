@@ -2,7 +2,7 @@ body {
   color: #222;
   font-family: sans-serif;
   line-height: 1.5;
-  margin: 1rem;
+  margin: 1rem auto;
   max-width: 768px;
 }
 
@@ -19,4 +19,5 @@ footer {
 a {
   color: #00e;
   text-decoration: none;
+  border-bottom: #00e 1px solid;
 }
