@@ -1,10 +1,19 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-
-  {{ .Content }}
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+  <article>
+    <header>
+      <h1>{{ .Title }}</h1>
+      {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+      {{ $dateHuman := .Date | time.Format ":date_long" }}
+      <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+    </header>
+    {{ .Content }}
+    <footer>
+      {{- with .GetTerms "categories" }}
+        <p><a href="{{ (index . 0).RelPermalink }}">{{ (index . 0).LinkTitle }}</a></p>
+      {{- end }}
+      {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+      <p>Share: <a href="https://twitter.com/intent/tweet?text={{ .Title }}&url={{ .Permalink }}">X</a></p>
+    </footer>
+  </article>  
+  {{ partial "related.html" . }}
 {{ end }}
