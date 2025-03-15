@@ -1,0 +1,4 @@
+
+{{ with $author := (.Params.author | default site.Params.author) }}
+    By {{ .name }}
+{{end }}
